@@ -1,69 +1,32 @@
-import PropTypes from "prop-types";
+import React from "react";
+// 클래스 컴포넌트를 쓸 때에는 react를 자동으로 임포트 시켜주네.
+// react.component에서 가져와서 app으로 확대된다고 이해하면 될까?
+class App extends React.Component {
 
-// prop 자료형 구분하기 위해 rating(number) 추가
+  state = {
+    count:0
+  };
 
-const foodILike = [{
-  id: 1,
-  name: '김치',
-  image: './logo192.png',
-  rating:5
-},
-{
-  id: 2,
-  name: 'banana',
-  image: './logo192.png',
-  rating:4
-},
-{
-  id: 3,
-  name: 'orange',
-  image: './logo192.png',
-  rating:4.9
-},
-{
-  id: 4,
-  name: 'watermelon',
-  image: './logo192.png',
-  rating:2.7
-},
-{
-  id: 5,
-  name: 'test',
-  image: './logo192.png',
-  rating:1.52
-},
-];
+  add = () => {
+    console.log('add');
+  }
+  minus = () => {
+    console.log('minus');
+  }
 
-
-function Food({ name, picture, rating }) {
+  // class 컴포넌트는 return이 없고 render methods가 있음.
+  render() {
     return <div>
-        <h3>I love { name }</h3>
-        <h4>{rating}/5.0</h4>
-        <img src={picture} alt={name}/>
-    </div>
+      <h1>The number is : {this.state.count}</h1>
+      <button onClick={this.add}>Add</button>
+      <button onClick={this.minus}>Minus</button>
+      </div>
+  }
 }
 
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-
-}
-
-function App() {
-  return (
-    <div className="App">
-        wow
-        {foodILike.map(dish => (
-          <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
-        ))}
-        
-    </div>
-    
-    
-  );
-}
-
+// {this.add()}는 바로 실행
+// 클릭했을 때에만 수행해야하므로 {this.add}로 적기
 
 export default App;
+
 
