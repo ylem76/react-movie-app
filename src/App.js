@@ -1,48 +1,61 @@
-function Food({ name, picture }) {
+import PropTypes from "prop-types";
+
+// prop 자료형 구분하기 위해 rating(number) 추가
+
+const foodILike = [{
+  id: 1,
+  name: '김치',
+  image: './logo192.png',
+  rating:5
+},
+{
+  id: 2,
+  name: 'banana',
+  image: './logo192.png',
+  rating:4
+},
+{
+  id: 3,
+  name: 'orange',
+  image: './logo192.png',
+  rating:4.9
+},
+{
+  id: 4,
+  name: 'watermelon',
+  image: './logo192.png',
+  rating:2.7
+},
+{
+  id: 5,
+  name: 'test',
+  image: './logo192.png',
+  rating:1.52
+},
+];
+
+
+function Food({ name, picture, rating }) {
     return <div>
         <h3>I love { name }</h3>
+        <h4>{rating}/5.0</h4>
         <img src={picture} alt={name}/>
     </div>
 }
 
-// 정보를 담고 있는 배열 선언
-// react의 element들은 유일해야 하는데, 리스트 안으로 넣을 때 유일성을 잃어버림(원인은 말 안해줌.)
-// 개별 props가 다 고유한 key를 가져야함.
-// 해결하기 위해 id를 따로 지정 -> id를 컴포넌트의 key prop로 사용
+Food.propTypes = {
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
 
-const foodILike = [{
-        id: 1,
-        name: '김치',
-        image: './logo192.png'
-    },
-    {
-        id: 2,
-        name: 'banana',
-        image: './logo192.png'
-    },
-    {
-        id: 3,
-        name: 'orange',
-        image: './logo192.png'
-    },
-    {
-        id: 4,
-        name: 'watermelon',
-        image: './logo192.png'
-    },
-    {
-        id: 5,
-        name: 'test',
-        image: './logo192.png'
-    },
-];
+}
 
 function App() {
   return (
     <div className="App">
         wow
         {foodILike.map(dish => (
-          <Food key={dish.id} name={dish.name} picture={dish.image}/>
+          <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating}/>
         ))}
         
     </div>
@@ -50,6 +63,7 @@ function App() {
     
   );
 }
+
 
 export default App;
 
