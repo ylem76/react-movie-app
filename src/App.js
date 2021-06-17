@@ -36,21 +36,17 @@ const foodILike = [{
         image: './logo192.png'
     },
 ];
-function renderFood(dish) {
-  // return 함수 따로 만들기.
-  // 지정한 id를 가져와서 컴포넌트의 key prop으로 지정
-  // key prop을 지정하기는 했지만, 실제 컴포넌트에서 사용하지는 않음.
-  // 리액트 내부적으로 사용하는 prop
-  return <Food key={dish.id} name={dish.name} picture={dish.image}/>
-}
 
 function App() {
   return (
     <div className="App">
         wow
-        {foodILike.map(renderFood)}
+        {foodILike.map(dish => (
+          <Food key={dish.id} name={dish.name} picture={dish.image}/>
+        ))}
+        
     </div>
-    // 바로 함수를 쓰는 방법이 아니라 함수를 따로 선언하여 불러옴
+    
     
   );
 }
