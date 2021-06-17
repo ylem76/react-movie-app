@@ -3,43 +3,55 @@ function Food({ name, picture }) {
         <h3>I love { name }</h3>
         <img src={picture} alt={name}/>
     </div>
-    // 하나의 블록만 리턴 가능 따라서 두 가지를 div로 묶어줘야함
-
 }
 
 // 정보를 담고 있는 배열 선언
+// react의 element들은 유일해야 하는데, 리스트 안으로 넣을 때 유일성을 잃어버림(원인은 말 안해줌.)
+// 개별 props가 다 고유한 key를 가져야함.
+// 해결하기 위해 id를 따로 지정 -> id를 컴포넌트의 key prop로 사용
+
 const foodILike = [{
-    name: '김치',
-    image:'./logo192.png'    
-},
-{
-    name: 'banana',
-    image:'./logo192.png'    
-},
-{
-    name: 'orange',
-    image:'./logo192.png'    
-},
-{
-    name: 'watermelon',
-    image:'./logo192.png'    
-},
-{
-    name: 'test',
-    image:'./logo192.png'    
-},];
+        id: 1,
+        name: '김치',
+        image: './logo192.png'
+    },
+    {
+        id: 2,
+        name: 'banana',
+        image: './logo192.png'
+    },
+    {
+        id: 3,
+        name: 'orange',
+        image: './logo192.png'
+    },
+    {
+        id: 4,
+        name: 'watermelon',
+        image: './logo192.png'
+    },
+    {
+        id: 5,
+        name: 'test',
+        image: './logo192.png'
+    },
+];
+function renderFood(dish) {
+  // return 함수 따로 만들기.
+  // 지정한 id를 가져와서 컴포넌트의 key prop으로 지정
+  // key prop을 지정하기는 했지만, 실제 컴포넌트에서 사용하지는 않음.
+  // 리액트 내부적으로 사용하는 prop
+  return <Food key={dish.id} name={dish.name} picture={dish.image}/>
+}
 
 function App() {
   return (
     <div className="App">
         wow
-        {foodILike.map(dish => <Food name={dish.name} picture={dish.image}/>)}
+        {foodILike.map(renderFood)}
     </div>
-    // foodILike 배열을 가져와서 map 함수로 각각의 배열 아이템에 컴포넌트를 리턴하게 함
-    // name과 image 키를 가지고 있는 오브젝트들의 배열이었는데,
-    // map 함수로 foodILike의 정보를 이용한 리액트 컴포넌트를 리턴,
-    // 화면에 출력되는 것은 
-    //<Food name="kimchi" picture="./logo192.png"/> 와 동일하게 되는 것
+    // 바로 함수를 쓰는 방법이 아니라 함수를 따로 선언하여 불러옴
+    
   );
 }
 
