@@ -1,27 +1,47 @@
-function Food({ fav }) {
-    // console.log(propsArgs);
-    // props를 함수의 첫번째 인자로 가져옴
-    // {fav : 'kimchi'}
-    // 콘솔을 찍어보면 오브젝트로 가져오는 것을 확인할 수 있다.
+function Food({ name, picture }) {
+    return <div>
+        <h3>I love { name }</h3>
+        <img src={picture} alt={name}/>
+    </div>
+    // 하나의 블록만 리턴 가능 따라서 두 가지를 div로 묶어줘야함
 
-    // propsArgs.fav = {fav}
-    // ES6로 오브젝트의 fav만 꺼내서 사용할 수 있는데, 인자 부분도 위와 같이 수정해주고.
-    // 실제 사용시에는 아래와 같이 쓸 수 있다.
-    return <h3>I love { fav }</h3>
 }
+
+// 정보를 담고 있는 배열 선언
+const foodILike = [{
+    name: '김치',
+    image:'./logo192.png'    
+},
+{
+    name: 'banana',
+    image:'./logo192.png'    
+},
+{
+    name: 'orange',
+    image:'./logo192.png'    
+},
+{
+    name: 'watermelon',
+    image:'./logo192.png'    
+},
+{
+    name: 'test',
+    image:'./logo192.png'    
+},];
 
 function App() {
   return (
     <div className="App">
         wow
-        <Food fav="kimchi" />
-        <Food fav="햄버거" />
-        <Food fav="치킨" />
-        <Food fav="먹을거" />
+        {foodILike.map(dish => <Food name={dish.name} picture={dish.image}/>)}
     </div>
-    // Food component에 prop'fav'에 값'kimchi'를 줌.
-    // prop value에는 불리언, 오브젝트, 어레이 모두 가능
+    // foodILike 배열을 가져와서 map 함수로 각각의 배열 아이템에 컴포넌트를 리턴하게 함
+    // name과 image 키를 가지고 있는 오브젝트들의 배열이었는데,
+    // map 함수로 foodILike의 정보를 이용한 리액트 컴포넌트를 리턴,
+    // 화면에 출력되는 것은 
+    //<Food name="kimchi" picture="./logo192.png"/> 와 동일하게 되는 것
   );
 }
 
 export default App;
+
