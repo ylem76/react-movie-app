@@ -1,33 +1,59 @@
 import React from "react";
+
+// 리액트의 클래스 컴포넌트는 render 말고 더 많은 게 있다.
+// 각각의 컴포넌트들은 라이프사이클 메소드를 가지고 있는데,
+// 기본적으로 리액트가 컴포넌트를 생성하고 없애는 방법.
+
+// 컴포넌트가 생성될 때 render 전에 호출되는 몇가지 function들이 있고
+// 컴포넌트가 render된 후에 호출되는 function들이 있다.
+// 컴포넌트가 update될 때 호출되는 또다른 function들.
+
+// 주로 사용하는 것들을 소개하자면
+// mounting, updating, unmounting
+
+// mounting : 페이지를 열 때 등등
+// constructor() -> render() -> componentDidMount()
+// 컴포넌트가 마운트 될 때 constructor를 호출
+
+// updating : 버튼을 눌렀을 때 등등
+// render() -> componentDidUpdated()
+
+// unmounting : 페이지 이동을 할 때 등등
+// cpomponentWillUnmount()
+
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    console.log('constructor');
+  }
 
   state = {
     count:0
   };
 
-  add = () => {
-    // this.state.count = 1;
-    // 이렇게 직접 작성해도 반영이 안 됨.
-    // 여기서 변경하는 state 값을 다시 render()를 실행해서 화면에 뿌리는 과정이 필요함.
-
-    // this.setState({count: this.state.count + 1});
-    // setState를 이용하면 값이 변하는 것을 감지,
-    // render 함수도 (변화가 있는 부분만)새로고침 해준다.
-
-
+  add = () => { 
     this.setState(current => ({ count:current.count + 1 }));
-    // this.state를 직접 가져와서 변경하는 건 좋은 방식이 아님.
-    // 리액트에서는 함수를 이용해 current값을 변경할 수 있음.
-    // 외부의 상태에 의존하지 않는 가장 좋은 방법..(?)
-
-    // setState를 호출할 때마다 리액트는 새로운 state값과 함께 render 함수를 호출한다!!
   }
   minus = () => {
     this.setState(current => ({ count:current.count - 1 }));
   }
 
-  // class 컴포넌트는 return이 없고 render methods가 있음.
+  componentDidMount() {
+    console.log('did mount');
+  }
+
+  componentDidUpdate() {
+    console.log('did updated');
+  }
+
+  componentWillUnmount() {
+    console.log('bye');
+  }
+
+
   render() {
+    console.log('render')
     return <div>
       <h1>The number is : {this.state.count}</h1>
       <button onClick={this.add}>Add</button>
