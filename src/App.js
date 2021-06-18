@@ -25,6 +25,8 @@ class App extends React.Component {
         // 복잡한 json 데이터를 접근할 때 간결하게 (es6문법)
         // 실제 변수명은 가장 마지막 key 이름이 됨.
 
+        console.log(movies);
+
         this.setState({
             movies,
             isLoading: false
@@ -45,12 +47,13 @@ class App extends React.Component {
           : <div className="movies">
               {movies.map(movie =>(
                 <Movie
-                  key={movie.key}
+                  key={movie.id}
                   id={movie.id}
                   year={movie.year}
                   title={movie.title}
                   summary={movie.summary}
-                  poster={movie.medium_cover_image} />
+                  poster={movie.medium_cover_image}
+                  genres={movie.genres} />
               ))}
             </div>
           }
