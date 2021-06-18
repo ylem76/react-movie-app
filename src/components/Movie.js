@@ -1,8 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-
 import "./Movie.css";
-// css 임포트
 
 
 function Movie({id, year, title, summary, poster, genres}) {
@@ -22,7 +20,6 @@ function Movie({id, year, title, summary, poster, genres}) {
     </div>
   </div>
 }
-// JSX에서는 class가 아니라 className으로 사용하기
 
 Movie.propTypes = {
   id: propTypes.number.isRequired,
