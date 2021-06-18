@@ -3,6 +3,8 @@ import axios from "axios";
 import Movie from "./Movie";
 // 임포트할 때 경로 잘 써주기 ㅠㅠ ./
 
+import "./App.css"
+
 class App extends React.Component {
 
     state = {
@@ -27,12 +29,6 @@ class App extends React.Component {
             movies,
             isLoading: false
         });
-        // {movies : movies} => {[state의 movies] : [api에서 가져오는 movies]}
-        // es6 축약으로 {movies} 로 작성 가능
-        // 데이터를 다 받아오면 로딩도 완료
-
-
-
     }
 
     componentDidMount() {
@@ -41,13 +37,25 @@ class App extends React.Component {
 
     render() {
         const { isLoading, movies } = this.state;
-        return <div> {isLoading ? "Loading..." : movies.map(movie =>
-          <Movie key={movie.key} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} />
-        )} </div>
-
-        // isLoading이 fase가 되면 movies map 개별 아이템마다 movie컴포넌트 리턴
-        // prop으로 id year title summary poster 사용
-        // key prop으로 id 사용
+        return <section className="container">
+          {isLoading 
+          ? <div className="loader">
+            <span className="loader__text">Loading...</span>
+          </div>
+          : <div className="movies">
+              {movies.map(movie =>(
+                <Movie
+                  key={movie.key}
+                  id={movie.id}
+                  year={movie.year}
+                  title={movie.title}
+                  summary={movie.summary}
+                  poster={movie.medium_cover_image} />
+              ))}
+            </div>
+          }
+        </section>
+        // 이렇게 긴 걸 3항 연산자로 처리하니까 괄호 미친듯이 헷갈린다...
     }
 }
 

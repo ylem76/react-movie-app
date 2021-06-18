@@ -1,15 +1,21 @@
 import React from "react";
 import propTypes from "prop-types";
+import "./Movie.css";
+// css 임포트
 
-// movie 컴포넌트 제작
-// movie 컴포넌트에서는 state 사용할 필요가 없음
-// 따라서 class 컴포넌트가 아닌 함수 컴포넌트로 만들기
 
 function Movie({id, year, title, summary, poster}) {
-  return <div>
-    <h4>{title}</h4>
+  return <div class="movies__movie">
+    <img src={poster} alt={title} name={title} />
+    <div className="movie__data">
+      <h3 className="movie__title">{title}</h3>
+      <h5 className="movie__year">{year}</h5>
+
+      <p className="movie__summary">{summary}</p>
+    </div>
   </div>
 }
+// JSX에서는 class가 아니라 className으로 사용하기
 
 Movie.propTypes = {
   id: propTypes.number.isRequired,
