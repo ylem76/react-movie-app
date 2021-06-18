@@ -3,7 +3,8 @@ import axios from "axios";
 import Movie from "./Movie";
 // 임포트할 때 경로 잘 써주기 ㅠㅠ ./
 
-import "./App.css"
+
+import "./Movie.css";
 
 class App extends React.Component {
 
