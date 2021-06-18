@@ -34,7 +34,7 @@ class Home extends React.Component {
         return <section className="container">
           {isLoading 
           ? <div className="loader">
-            <span className="loader__text">Loading...</span>
+            <span className="loader__text">수정12123수정</span>
           </div>
           : <div className="movies">
               {movies.map(movie =>(
